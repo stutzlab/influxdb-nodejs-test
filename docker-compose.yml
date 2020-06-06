@@ -7,4 +7,4 @@ services:
     image: stutzlab/influxdb-cloud-nodejs-test
     environment:
       - INFLUXDB_BUCKETID=3ad4e9845868ea6d
-      - INFLUXDB_TOKEN=oOZs0oVEB139gDyFYKvjk6LZXF9dM1d725smaaTIzK9v151eojgZaEg8fukwM4jRLU_v8i2TSK_qRnvDdcguCg==
+      - INFLUXDB_TOKEN=
