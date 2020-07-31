@@ -16,6 +16,6 @@ jobs:
         uses: sarthak-saxena/JSBundleSize@master
         with:
           bootstrap: "npm install"
-          build_command: "npm run build && ls -lah && ls -lah dist/"
+          build_command: "npm run build"
           dist_path: "dist"
           token: ${{ secrets.GITHUB_TOKEN }}
