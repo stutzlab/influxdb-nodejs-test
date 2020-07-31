@@ -1,15 +1,12 @@
 name: "check my bundlephobia"
-on:
-  push:
-    branches:
-      - master
-  pull_request:
-    branches:
-      - master
+on: pull_request
+
 jobs:
   bundlecheck:
     runs-on: ubuntu-latest
     steps:
+      - name: GitHub Action for JS Bundle Size
+        uses: mikeal/bundle-size-action@1.0.0
       - uses: actions/checkout@v1
       - uses: carlesnunez/check-my-bundlephobia@v1.2.0
         with:
