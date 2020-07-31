@@ -1,8 +1,15 @@
-steps:
-  - uses: actions/checkout@master
-  - uses: sarthak-saxena/JSBundleSize@master
-    with:
-      bootstrap: npm install
-      build_command: mkdir dist && move index.js dist/index.js
-      dist_path: dist
-      token: ${{ secrets.GITHUB_TOKEN }}
+name: bundle-size
+
+on: pull_request
+
+jobs:
+    bundle-size:
+    name: report file size impact
+    steps:
+        - uses: actions/checkout@master
+        - uses: sarthak-saxena/JSBundleSize@master
+            with:
+            bootstrap: npm install
+            build_command: mkdir dist && move index.js dist/index.js
+            dist_path: dist
+            token: ${{ secrets.GITHUB_TOKEN }}
