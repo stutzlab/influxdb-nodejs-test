@@ -1,15 +1,41 @@
-name: "check my bundlephobia"
+name: file-size-impact
+
 on: pull_request
 
 jobs:
-  bundlecheck:
+  example:
+    name: sample comment
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v1
-      - name: GitHub Action for JS Bundle Size
-        uses: carlesnunez/check-my-bundlephobia@v1.2.0
+      - name: comment PR
+        uses: unsplash/comment-on-pr@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          strict: false
-          threshold: 500
+          msg: "Check out this message!"
+          check_for_duplicate_msg: false # OPTIONAL
+
+  file-size-impact:
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node: [13.12.0]
+    runs-on: ${{ matrix.os }}
+    name: report file size impact
+    steps:
+      - name: Setup git
+        uses: actions/checkout@v2
+      - name: Setup node ${{ matrix.node }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+      - name: npm install
+        run: npm install
+      - name: npm run build
+        run: npm run build
+      - name: npm install jsenv-file-size
+        run: npm install --prefix ./.github/workflows/file-size-impact/
+      - name: Report file size impact
+        run: node ./.github/workflows/file-size-impact/report-file-size-impact.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
