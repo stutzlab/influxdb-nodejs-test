@@ -3,19 +3,25 @@ name: file-size-impact
 on: pull_request
 
 jobs:
-  calculate-size:
-    runs-on: ubuntu-latest
+  file-size-impact:
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node: [13.12.0]
+    runs-on: ${{ matrix.os }}
+    name: report file size impact
     steps:
-      - name: checkout master
-        uses: actions/checkout@master
-      - name: setup node
+      - name: Setup git
+        uses: actions/checkout@v2
+      - name: Setup node ${{ matrix.node }}
         uses: actions/setup-node@v1
         with:
-          node-version: "10.0.0"
-      - name: bundle size
-        uses: sarthak-saxena/JSBundleSize@master
-        with:
-          bootstrap: "npm install"
-          build_command: "npm run build"
-          dist_path: "dist"
-          token: ${{ secrets.GITHUB_TOKEN }}
+          node-version: ${{ matrix.node }}
+      - name: npm install app
+        run: npm install
+      - name: npm run build app
+        run: npm run build
+      - name: Report file size impact
+        run: node ./.github/workflows/file-size-impact/report-file-size-impact.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
