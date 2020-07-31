@@ -6,10 +6,16 @@ jobs:
   calculate-size:
     runs-on: ubuntu-latest
     steps:
-        - uses: actions/checkout@master
-        - uses: sarthak-saxena/JSBundleSize@master
-            with:
-            bootstrap: npm install
-            build_command: mkdir dist && move index.js dist/index.js
-            dist_path: dist
-            token: ${{ secrets.GITHUB_TOKEN }}
+      - name: checkout master
+        uses: actions/checkout@master
+      - name: setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: "10.0.0"
+      - name: bundle size
+        uses: sarthak-saxena/JSBundleSize@master
+        with:
+          bootstrap: "npm install"
+          build_command: "npm run build"
+          dist_path: "dist"
+          token: ${{ secrets.GITHUB_TOKEN }}
