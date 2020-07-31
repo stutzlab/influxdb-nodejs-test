@@ -17,5 +17,5 @@ jobs:
         with:
           bootstrap: "npm install"
           build_command: "npm run build"
-          dist_path: "dist"
+          dist_path: "packages/crop/dist"
           token: ${{ secrets.GITHUB_TOKEN }}
