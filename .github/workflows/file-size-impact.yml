@@ -17,10 +17,12 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node }}
-      - name: npm install app
+      - name: npm install
         run: npm install
-      - name: npm run build app
+      - name: npm run build
         run: npm run build
+      - name: npm install jsenv-file-size
+        run: npm install --prefix ./.github/workflows/file-size-impact/
       - name: Report file size impact
         run: node ./.github/workflows/file-size-impact/report-file-size-impact.js
         env:
