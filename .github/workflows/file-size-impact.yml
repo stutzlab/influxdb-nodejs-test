@@ -5,10 +5,10 @@ jobs:
   bundlecheck:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v1
       - name: GitHub Action for JS Bundle Size
-        uses: mikeal/bundle-size-action@1.0.0
-      - uses: actions/checkout@v1
-      - uses: carlesnunez/check-my-bundlephobia@v1.2.0
+        uses: carlesnunez/check-my-bundlephobia@v1.2.0
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           strict: true
