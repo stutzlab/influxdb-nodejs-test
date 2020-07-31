@@ -9,7 +9,7 @@ jobs:
         uses: actions/checkout@v1
       - name: GitHub Action for JS Bundle Size
         uses: carlesnunez/check-my-bundlephobia@v1.2.0
-          with:
-            repo-token: ${{ secrets.GITHUB_TOKEN }}
-            strict: true
-            threshold: 500
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          strict: true
+          threshold: 500
