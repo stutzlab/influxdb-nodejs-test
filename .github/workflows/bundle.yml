@@ -1,0 +1,16 @@
+name: Calculate JS Bundle Size
+
+on:
+  pull_request:
+    types: ['opened', 'reopened', 'synchronize']
+jobs:
+  calculate-size:
+    runs-on: ubuntu-latest
+    steps:
+        - uses: actions/checkout@master
+        - uses: sarthak-saxena/JSBundleSize@master
+            with:
+            bootstrap: npm install
+            build_command: mkdir dist && move index.js dist/index.js
+            dist_path: dist
+            token: ${{ secrets.GITHUB_TOKEN }}
