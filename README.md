@@ -1,4 +1,4 @@
-# InfluxData NodeJS Test
+# InfluxData NodeJS API Test
 
 InfluxDB cloud with NodeJS client test
 
