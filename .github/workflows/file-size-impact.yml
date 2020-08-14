@@ -3,18 +3,6 @@ name: file-size-impact
 on: pull_request
 
 jobs:
-  example:
-    name: sample comment
-    runs-on: ubuntu-latest
-    steps:
-      - name: comment PR
-        uses: unsplash/comment-on-pr@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          msg: "Check out this message!"
-          check_for_duplicate_msg: false # OPTIONAL
-
   file-size-impact:
     strategy:
       matrix:
