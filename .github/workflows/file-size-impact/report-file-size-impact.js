@@ -5,8 +5,10 @@ const exec = require("@actions/exec");
 
 async function run() {
   try {
-    await exec.exec(`echo "Previous Bundle Size: 811KB"`);
-    await exec.exec(`echo "New Bundle Size: 765KB"`);
+    const previousBundleSize = "811KB";
+    await exec.exec(`echo "Previous Bundle Size: ${previousBundleSize}"`);
+    const newBundleSize = "811KB";
+    await exec.exec(`echo "New Bundle Size: ${newBundleSize}"`);
   } catch (error) {
     core.setFailed(error.message);
   }
