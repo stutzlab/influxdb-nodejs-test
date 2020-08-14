@@ -5,7 +5,8 @@ const exec = require("@actions/exec");
 
 async function run() {
   try {
-    await exec.exec(`echo "::set-output name=bundle_size::765Kb"`);
+    await exec.exec(`echo "Previous Bundle Size: 811KB"`);
+    await exec.exec(`echo "New Bundle Size: 765KB"`);
   } catch (error) {
     core.setFailed(error.message);
   }
