@@ -28,5 +28,3 @@ jobs:
         run: node ./.github/workflows/file-size-impact/report-file-size-impact.js
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Print bundle size
-        run: echo "${{ steps.report_file_size.outputs.bundle_size }}"

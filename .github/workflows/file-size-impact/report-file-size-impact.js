@@ -1,14 +1,16 @@
 const { reportFileSizeImpact, readGithubWorkflowEnv } = require("@jsenv/file-size-impact");
 
 const core = require("@actions/core");
-const exec = require("@actions/exec");
+// const exec = require("@actions/exec");
 
 async function run() {
   try {
     const previousBundleSize = "811KB";
-    await exec.exec(`echo "Previous Bundle Size: ${previousBundleSize}"`);
+    // await exec.exec(`echo "Previous Bundle Size: ${previousBundleSize}"`);
+    core.info(`Previous Bundle Size: ${previousBundleSize}`);
     const newBundleSize = "811KB";
-    await exec.exec(`echo "New Bundle Size: ${newBundleSize}"`);
+    core.info(`New Bundle Size: ${newBundleSize}`);
+    // await exec.exec(`echo "New Bundle Size: ${newBundleSize}"`);
   } catch (error) {
     core.setFailed(error.message);
   }
