@@ -24,6 +24,9 @@ jobs:
       - name: npm install jsenv-file-size
         run: npm install --prefix ./.github/workflows/file-size-impact/
       - name: Report file size impact
+        id: report_file_size
         run: node ./.github/workflows/file-size-impact/report-file-size-impact.js
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Print bundle size
+        run: echo "${{ steps.report_file_size.outputs.bundle_size }}"
