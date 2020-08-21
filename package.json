@@ -11,7 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/stutzlab/influxdb-nodejs-test.git"
   },
-  "author": "",
+  "author": "Tiago Stutz",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/stutzlab/influxdb-nodejs-test/issues"
