@@ -18,7 +18,6 @@
   },
   "homepage": "https://github.com/stutzlab/influxdb-nodejs-test#readme",
   "dependencies": {
-    "@jsenv/file-size-impact": "^4.1.0",
     "@influxdata/influxdb-client": "^1.3.0"
   }
 }

@@ -9,6 +9,6 @@
   "author": "Tiago Stutz",
   "license": "MIT",
   "dependencies": {
-    "@jsenv/file-size-impact": "^4.1.0"
+    "@jsenv/file-size-impact": "4.3.0"
   }
 }
