@@ -1,13 +1,14 @@
-const core = require("@actions/core");
+const { reportFileSizeImpact, readGithubWorkflowEnv } = require("@jsenv/file-size-impact");
 
-async function run() {
-  try {
-    const previousBundleSize = "811KB";
-    core.info(`Previous Bundle Size: ${previousBundleSize}`);
-    const newBundleSize = "708KB";
-    core.info(`New Bundle Size: ${newBundleSize}`);
-  } catch (error) {
-    core.setFailed(error.message);
-  }
-}
-run();
+reportFileSizeImpact({
+  ...readGithubWorkflowEnv(),
+  projectDirectoryUrl: process.env.GITHUB_WORKSPACE,
+  installCommand: "npm install",
+  buildCommand: "npm run build && rm -rf node_modules",
+  trackingConfig: {
+    dist: {
+      "./dist/**/*": true,
+      "./dist/**/*.map": false,
+    },
+  },
+});
