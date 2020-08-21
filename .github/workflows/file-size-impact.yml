@@ -3,13 +3,28 @@ name: file-size-impact
 on: pull_request
 
 jobs:
-  calculate-size:
-    runs-on: ubuntu-latest
+  file-size-impact:
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node: [13.12.0]
+    runs-on: ${{ matrix.os }}
+    name: report file size impact
     steps:
-        - uses: actions/checkout@master
-        - uses: sarthak-saxena/JSBundleSize@master
-            with:
-            bootstrap: npm install
-            build_command: mkdir dist && move index.js dist/index.js
-            dist_path: dist
-            token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Setup git
+        uses: actions/checkout@v2
+      - name: Setup node ${{ matrix.node }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+      - name: npm install
+        run: npm install
+      - name: npm run build
+        run: npm run build
+      - name: npm install jsenv-file-size
+        run: npm install --prefix ./.github/workflows/file-size-impact/
+      - name: Report file size impact
+        id: report_file_size
+        run: node ./.github/workflows/file-size-impact/report-file-size-impact.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
